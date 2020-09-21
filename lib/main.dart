@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
-// void main() {
-//   runApp(MyApp());
-// }
+import './quiz.dart';
+import './end.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -16,8 +14,9 @@ class MyApp extends StatefulWidget {
 }
   class MyAppState extends State<MyApp> { 
     var qIndex = 0;
+    final String endStr = "The End !";
 
-    var questions = [
+    final questions = const [
       {
         'question':"What is your favorite color ?",
         'answers':["Blue", "Green", "Red", "Yellow"],
@@ -37,8 +36,18 @@ class MyApp extends StatefulWidget {
     ];
 
     void answerQuestion() {
+      if(qIndex < questions.length){
+        setState(() {
+          qIndex = qIndex + 1;
+        });
+      }else{
+        print("Quiz Over");
+      }
+    }
+
+    void resetQuiz() {
       setState(() {
-        qIndex = qIndex + 1;
+        qIndex = 0;
       });
     }
 
@@ -49,14 +58,7 @@ class MyApp extends StatefulWidget {
           appBar: AppBar(
             title: Text("Welcome to Quiz")
             ),
-          body: Column(
-            children: [
-              Question(questions[qIndex]['question']),
-              ...(questions[qIndex]['answers'] as List<String>).map((answer) {
-                return Answer(answerQuestion, answer);
-              })
-            ],
-          ),
+          body: qIndex < questions.length ? Quiz(questions, answerQuestion, qIndex) : End(endStr, resetQuiz)
         ),
       );
     }
