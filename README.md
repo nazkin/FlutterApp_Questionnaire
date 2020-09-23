@@ -17,8 +17,8 @@ At the end the user is presented with the option to reset the questionnaire from
 [x] Create a separate quiz.dart file such that you can clean up the main file
 
 # Sample Images
-![Taking the questionnaire](./readme_imgs/quiz1.png)
-![End of questionnaire](./readme_imgs/quiz2.png)
+![Taking the questionnaire](./readme_imgs/quiz1.png = 100x20)
+![End of questionnaire](./readme_imgs/quiz2.png = 100x20)
 
 
 
